@@ -1,0 +1,66 @@
+plugins {
+    id 'java'
+
+    // for api use
+    id 'java-library'
+
+    // mirai
+    id 'org.jetbrains.kotlin.jvm' version '1.5.30'
+
+    // shadow
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
+}
+
+group 'cn.codethink'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+
+    mavenLocal()
+
+    // codethink maven
+//    maven {
+//        name 'codethink maven'
+//
+//        // set to true for ignoring warning
+//        allowInsecureProtocol true
+//
+//        url 'http://121.4.253.187:8081/repository/maven-public/'
+//    }
+}
+
+dependencies {
+    // common
+    compileOnly 'cn.codethink:xiaoming-platform-common:5.0-SNAPSHOT'
+    testImplementation 'cn.codethink:xiaoming-platform-common:5.0-SNAPSHOT'
+
+    // debug required
+    testImplementation 'cn.codethink:xiaoming-platform-module-debug:5.0-SNAPSHOT'
+    testImplementation 'cn.codethink:xiaoming-core-mirai:5.0-SNAPSHOT'
+    testImplementation 'net.mamoe:mirai-core:2.10.0'
+
+    // lombok
+    compileOnly 'org.projectlombok:lombok:1.18.22'
+    annotationProcessor 'org.projectlombok:lombok:1.18.22'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.22'
+    testCompileOnly 'org.projectlombok:lombok:1.18.22'
+
+    // junit
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+// for shadlw
+shadowJar {
+    exclude "META-INF/*.SF"
+    exclude "META-INF/*.DSA"
+    exclude "META-INF/*.RSA"
+    exclude "META-INF/LICENSE"
+
+    archiveName project.name + '-' + version + '.' + extension
+}
