@@ -7,7 +7,7 @@ public class PluginDebug {
     public static void main(String[] args){
         
         MiraiImplementPlatformDebug
-            .of(1420431708, "lclbmiloveyou!")
+            .of(你的QQ号码, "引号内的QQ密码")
             .plugin(DemoPlugin.getInstance())
             .start();
     }
